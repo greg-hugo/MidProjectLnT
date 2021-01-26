@@ -7,6 +7,8 @@ import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
 public class Main {
+	
+	//print table karywan
 	static void printEmployee(Vector<Employee> employees) {
 		System.out.println("|----|-----------------|------------------------------|---------------|--------------|-------------|");
 		System.out.println("|No  |Kode Karyawan    |Nama Karyawan                 |Jenis Kelamin  |Jabatan       |Gaji Karyawan|"); 
@@ -19,6 +21,7 @@ public class Main {
 		System.out.println("|----|-----------------|------------------------------|---------------|--------------|-------------|");
 	}
 	
+	//print space
 	static void space() {
 		for(int i=0; i<10; i++) {
 			System.out.println();
@@ -53,6 +56,8 @@ public class Main {
 				
 			}while(menu<1||menu>4);
 			space();
+			
+			//Insert karyawan baru
 			if(menu==1) {
 				String name, sex, job, code="";
 				int salary=0;
@@ -93,7 +98,7 @@ public class Main {
 				//
 				System.out.println("Berhasil menambahkan karyawan dengan id "+ code);
 				
-//				Menentukan gaji,jumlah jabatan, dan print kode yang gajinya naik
+				// Menentukan gaji,jumlah jabatan, dan print kode yang gajinya naik
 				if(job.equals("Manager")){
 					salary = 8000000;
 					++manager_count;
@@ -154,25 +159,30 @@ public class Main {
 						System.out.print("\n");
 					}
 				}
-//				
+				//				
 				
-				employees.add(new Employee(code,name,sex,job,salary));			
+				employees.add(new Employee(code,name,sex,job,salary));	
+				//sort karyawan
 				Collections.sort(employees, Employee.EmployeeNameComparator);
+				//
 			}
 			
+			//View karyawan
 			else if(menu==2) {
 				printEmployee(employees);
 			}
 			
+			//Update karyawan
 			else if(menu==3) {
 				printEmployee(employees);
-				System.out.print("Input nomor karywan untuk diup");
+				System.out.print("Input nomor karywan: ");
 				int emp_num = scan.nextInt();
 				scan.nextLine();
 				String name, sex, job, code="";
 				int salary=0;
 				boolean flag;
 				
+				//pattern regex untuk format kode karyawan MM-XXXX
 				String pattern = "^[A-Z]{2}-\\d{4}$";
 				Pattern regex = Pattern.compile(pattern);
 				
@@ -219,22 +229,26 @@ public class Main {
 						scan.nextLine();
 						System.out.println("Mohon input gaji dengan angka");
 					}
-				} while (salary<1||salary>100000000);		
+				} while (salary<1||salary>100000000);	
+				
+				//set data karyawan baru
 				--emp_num;
 				employees.get(emp_num).setName(name);
 				employees.get(emp_num).setSex(sex);
 				employees.get(emp_num).setJob(job);
 				employees.get(emp_num).setSalary(salary);
+				//
 			}
 			
+			// Delete karyawan
 			else if(menu==4) {
 				printEmployee(employees);
-				System.out.print("Input nomor karyawan untuk dihapus: ");
+				System.out.print("Input nomor karyawan: ");
 				int emp_num = scan.nextInt();
 				scan.nextLine();
 				employees.remove(--emp_num);
 			}
-			System.out.println();
+
 			System.out.println("ENTER to return");
 			scan.nextLine();
 			
