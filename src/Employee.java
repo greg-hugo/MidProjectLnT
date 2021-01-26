@@ -49,6 +49,7 @@ public class Employee{
 		this.salary = salary;
 	}
 	
+	//Sort nama karyawan
 	public static Comparator<Employee> EmployeeNameComparator 
     					= new Comparator<Employee>() {
 
@@ -56,7 +57,6 @@ public class Employee{
 
 			String employeeName1 = employee1.getName().toUpperCase();
 			String employeeName2 = employee2.getName().toUpperCase();
-
 
 			return employeeName1.compareTo(employeeName2);
 		}
