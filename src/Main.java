@@ -116,7 +116,7 @@ public class Main {
 									--comma;
 							}
 						}
-						
+						System.out.println();
 					}
 				}
 				else if(job.equals("Supervisor")) {
@@ -136,7 +136,7 @@ public class Main {
 									--comma;
 							}
 						}
-						
+						System.out.println();
 					}
 				}				
 				else if(job.equals("Admin")) {
@@ -156,7 +156,7 @@ public class Main {
 									--comma;
 							}
 						}
-						
+						System.out.println();
 					}
 				}
 				//				
@@ -266,6 +266,7 @@ public class Main {
 								}
 							}
 						}
+						System.out.println();
 					}
 					
 					else if(job.equals("Supervisor")) {
@@ -285,6 +286,7 @@ public class Main {
 								}
 							}
 						}
+						System.out.println();
 					}
 					
 					else if(job.equals("Admin")) {
@@ -304,6 +306,7 @@ public class Main {
 								}
 							}
 						}
+						System.out.println();
 					}
 				}
 				
