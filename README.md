@@ -1,12 +1,13 @@
 # MidProjectLnT
 
-#Add option atau menambahkan karyawan
+# Add option atau menambahkan karyawan
 #
 Gaji karyawan akan naik apabila terdapat penambahan karyawan sebanyak kelipatan tiga kali.
 Contoh: 4 Admin, maka 3 karyawan pertama akan dinaikkan gajinya
         10 Admin, maka 9 karyawan pertama akan dinaikkan gajinya
-
-#Update option
+#
+# Update option
+#
 Agar sistem menjadi lebih jelas,
 diasumsikan bahwa pada option update memiliki fitur yang mirip dengan option menambahkan karyawan.
 #
