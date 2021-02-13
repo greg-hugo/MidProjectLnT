@@ -116,7 +116,7 @@ public class Main {
 									--comma;
 							}
 						}
-						System.out.print("\n");
+						
 					}
 				}
 				else if(job.equals("Supervisor")) {
@@ -136,7 +136,7 @@ public class Main {
 									--comma;
 							}
 						}
-						System.out.print("\n");
+						
 					}
 				}				
 				else if(job.equals("Admin")) {
@@ -156,7 +156,7 @@ public class Main {
 									--comma;
 							}
 						}
-						System.out.print("\n");
+						
 					}
 				}
 				//				
@@ -177,6 +177,10 @@ public class Main {
 				printEmployee(employees);
 				System.out.print("Input nomor karywan: ");
 				int emp_num = scan.nextInt();
+				--emp_num;
+				
+				String temp = employees.get(emp_num).getJob();
+				
 				scan.nextLine();
 				String name, sex, job, code="";
 				int salary=0;
@@ -231,8 +235,80 @@ public class Main {
 					}
 				} while (salary<1||salary>100000000);	
 				
+				System.out.println("Berhasil mengubah data karyawan dengan id "+code);
+				
+				if(!temp.equals(job)) {
+					//Jika input jabatan berbeda dengan yang sebelumnya maka banyak karyawan di jabatan sebelumnya
+					//akan dikurangi
+					if(temp.equals("Manager"))
+						--manager_count;
+					else if(temp.equals("Supervisor"))
+						--super_count;
+					else if(temp.equals("Admin"))
+						--admin_count;
+					
+					//Sebaliknya jumlah karyawan pada jabatan barunya akan ditambah
+					//dan sistem penambahan gaji tetap berjalan apabila terdapat penambahan jabtan dengan kelipatan tiga
+					if(job.equals("Manager")) {
+						++manager_count;
+						if((manager_count-1)%3==0 && manager_count!=1) {
+							System.out.print("Bonus sebesar 10% telah diberikan kepada karyawan dengan id ");
+							int comma = manager_count - 1;
+							for(Employee employee : employees) {
+								if(employee.getJob().equals("Manager")) {
+									int raise = employee.getSalary();
+									raise =  (int)(0.1 * raise) + raise;
+									employee.setSalary(raise);
+									System.out.print(employee.getCode());
+									if(comma != 1)
+										System.out.print(", ");
+										--comma;
+								}
+							}
+						}
+					}
+					
+					else if(job.equals("Supervisor")) {
+						++super_count;
+						if((super_count-1)%3==0 && super_count!=1) {
+							System.out.print("Bonus sebesar 7.5% telah diberikan kepada karyawan dengan id ");
+							int comma = super_count - 1;
+							for(Employee employee : employees) {
+								if(employee.getJob().equals("Supervisor")) {
+									int raise = employee.getSalary();
+									raise = (int) (0.075 * raise) + raise;
+									employee.setSalary(raise);
+									System.out.print(employee.getCode());
+									if(comma != 1)
+										System.out.print(", ");
+										--comma;
+								}
+							}
+						}
+					}
+					
+					else if(job.equals("Admin")) {
+						++admin_count;
+						if((admin_count-1)%3==0 && admin_count!=1) {
+							System.out.print("Bonus sebesar 5% telah diberikan kepada karyawan dengan id ");
+							int comma = admin_count-1;
+							for(Employee employee : employees) {
+								if(employee.getJob().equals("Admin")) {
+									int raise = employee.getSalary();
+									raise = (int) (0.05 * raise) + raise;
+									employee.setSalary(raise);
+									System.out.print(employee.getCode());
+									if(comma != 1)
+										System.out.print(", ");
+										--comma;
+								}
+							}
+						}
+					}
+				}
+				
 				//set data karyawan baru
-				--emp_num;
+				employees.get(emp_num).setCode(code);
 				employees.get(emp_num).setName(name);
 				employees.get(emp_num).setSex(sex);
 				employees.get(emp_num).setJob(job);
